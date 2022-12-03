@@ -15,8 +15,8 @@ def upload():
     if request.method == 'POST':
         img = request.files['img']
         img.save(secure_filename(img.filename))
-        url = "http://140.254.14.107/predict"
-        image = {'img':open(secure_filename(img.filename))}
+        url = "http://140.254.14.107:5000/predict"
+        image = {'img':open(secure_filename(img.filename),'rb')}
         start = time.time()
         r = requests.post(url, files=image)
         print("Total time: {:.3f}s".format(time.time() - start))

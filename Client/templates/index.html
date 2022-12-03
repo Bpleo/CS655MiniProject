@@ -20,6 +20,7 @@ text-align: center;
 color: #fff;
 transition: all 1s;
 opacity: 0;
+    visibility:hidden;
 }
 button{
 width: 100px;
@@ -37,10 +38,10 @@ color: #fff;
 <h1>Image Recognition System</h1>
     <form action = "http://140.254.14.103:5000/upload" method = "post" enctype = "multipart/form-data">
         <input type="file" name = "img"/>
-        <button type="submit">predict</button>
+        <button type="submit" onclick="document.getElementById('mask').style.visibility = 'visible'">predict</button>
     </form>
 
-<div class="mask">upload successfully</div>
+<div id="mask">upload successfully</div>
 
 </body>
 </html>

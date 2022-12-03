@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CS655 Image Recognition</title>
+<style>
+.mask {
+position: fixed;
+top: -80px;
+left: 50%;
+transform: translate(-50%, 20px);
+width: 100px;
+height: 40px;
+line-height: 40px;
+background-color: #23b9df;
+border-radius: 6px;
+font-size: 14px;
+text-align: center;
+color: #fff;
+transition: all 1s;
+opacity: 0;
+}
+.msg {
+top: 0px;
+opacity: 1;
+}
+button{
+width: 100px;
+height: 40px;
+line-height: 40px;
+outline-style: none;
+border: 0;
+border-radius: 4px;
+background: rgb(92, 107, 240);
+color: #fff;
+}
+</style>
+</head>
+<body>
+<h1>Image Recognition System</h1>
+<input type="file" id="file_upload"/>
+<button>predict</button>
+<div class="mask">upload successfully</div>
+<script>
+const fileUploader = document.getElementById('file_upload')
+
+const reader = new FileReader()
+fileUploader.addEventListener('change', (e) => {
+    const files = e.target.files[0]
+    reader.readAsDataURL(files)
+    reader.addEventListener('load', (event) => {
+        const img = document.createElement('img');
+        document.body.appendChild(img);
+        img.src = event.target.result;
+        img.alt = files.name;
+        file=files
+    });
+})
+let file = null
+// upload request
+const btn = document.querySelector('button')
+btn.addEventListener('click', function (e) {
+    if (!file) return
+    var formData = new FormData()
+    formData.append('img', file)
+    let xhr = new XMLHttpRequest()
+    xhr.open('post', 'http://127.0.0.1/file')
+    xhr.send(formData)
+    console.log(xhr)
+    xhr.onreadystatechange = () => {
+        if (xhr.status === 200 && xhr.readyState === 4) {
+            document.querySelector('.mask').innerText = xhr.responseText
+            document.querySelector('.mask').classList.add('msg')
+            setTimeout(() => {
+                document.querySelector('.mask').classList.remove('msg')
+            }, 800);
+        }
+    }
+})
+</script>
+</body>
+</html>

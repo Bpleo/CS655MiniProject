@@ -65,7 +65,7 @@ btn.addEventListener('click', function (e) {
     var formData = new FormData()
     formData.append('img', file)
     let xhr = new XMLHttpRequest()
-    xhr.open('post', 'http://127.0.0.1/file')
+    xhr.open('post', 'http://140.254.14.103:5000/upload')
     xhr.send(formData)
     console.log(xhr)
     xhr.onreadystatechange = () => {

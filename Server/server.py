@@ -3,7 +3,6 @@ import requests
 import time
 import os
 from werkzeug.utils import secure_filename
-from classifier import ImageRecognition
 
 app = Flask(__name__)
 result = ""

@@ -12,7 +12,9 @@ result = ""
 def recognition():
     if request.method == 'POST':
         img = request.files['img']
+        print("fname:" + img.filename)
         img.save(secure_filename(img.filename))
         start_time = time.time()
-        try:
-            result = 
+        
+if __name__ == '__main__':
+	app.run(debug=True, host='0.0.0.0')

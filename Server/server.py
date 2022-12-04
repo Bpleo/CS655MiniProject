@@ -26,13 +26,21 @@ def recognition():
             print(secure_filename(img.filename))
             result = node.predict(Image.open(secure_filename(img.filename)))
             result += "Processing time: {:.3f}s".format(time.time() - start_time)
+<<<<<<< HEAD
             req = requests.post(url, result={'result':result})
+=======
+	    req = requests.post(url, json={'result':result})
+>>>>>>> ef594341f82e48e6806535df9ba7834d462b8a28
             return req.text
         except Exception as e:
             print(e.args)
             print(str(e))
             print(repr(e))
+<<<<<<< HEAD
             req = requests.post(url, result={'result':'Invalid File Type!!'})
+=======
+	    req = requests.post(url, json={'result':'Invalid File Type!!}
+>>>>>>> ef594341f82e48e6806535df9ba7834d462b8a28
             return req.text
 if __name__ == '__main__':
 	app.run(debug=True, host='0.0.0.0')

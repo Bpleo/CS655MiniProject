@@ -5,7 +5,6 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 
 app = Flask(__name__)
-start = 0
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
@@ -13,9 +12,9 @@ def index():
         return render_template('index.html')
     if request.method == 'POST':
         result = request.get_json()['result']
-        result += "\nTotal time: {:.3f}s".format(time.time() - start)
+        result += "Total time: {:.3f}s".format(time.time() - start)
         print("Total time: {:.3f}s".format(time.time() - start))
-        return render_template('output.html', value = result)
+        return 
 
 @app.route('/upload',methods = ['GET', 'POST'])
 def upload():
@@ -26,8 +25,9 @@ def upload():
         image = {'img':open(secure_filename(img.filename),'rb')}
         start = time.time()
         r = requests.post(url, files=image)
-        print("Total time: {:.3f}s".format(time.time() - start))
-        return r.text
+        time = " Total time: {:.3f}s".format(time.time() - start)
+        print(time)
+        return render_template('output.html', value = r.text + time)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

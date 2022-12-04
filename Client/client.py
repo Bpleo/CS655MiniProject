@@ -5,10 +5,15 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 
 app = Flask(__name__)
+start = 0
 
-@app.route('/')
+@app.route('/', methods = ['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.method == 'GET':
+        return render_template('index.html')
+    if request.method == 'POST':
+        result = request.result['result']
+        return render_template('output.html', value = result)
 
 @app.route('/upload',methods = ['GET', 'POST'])
 def upload():

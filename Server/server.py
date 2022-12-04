@@ -2,6 +2,7 @@ from flask import request, Flask, render_template
 import requests
 import time
 import os
+from PIL import Image
 from werkzeug.utils import secure_filename
 from IRNode import IRNode
 import argparse

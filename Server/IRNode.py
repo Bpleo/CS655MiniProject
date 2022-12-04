@@ -29,7 +29,7 @@ class IRNode:
         else:
             self.model = None
             
-    def preprocessImage(image):
+    def preprocessImage(self, image):
         tmp_image = image.convert("RGB")
         preprocess = transforms.Compose([
             transforms.Resize(256),
@@ -45,7 +45,7 @@ class IRNode:
         if self.model is None:
             return None
         imagenet_df = pd.read_json(label_url).T
-        output = self.model(preprocessImage(Image.open(image)))
+        output = self.model(self.preprocessImage(Image.open(image)))
         output_prob = torch.nn.functional.softmax(output[0], dim=0)
         index = int(torch.argmax(output_prob))
         return imagenet_df.iloc[index][1]

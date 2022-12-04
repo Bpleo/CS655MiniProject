@@ -68,3 +68,4 @@
     bash setup.sh
     bash install.sh
     ```
+    (We highly recommend leave it running and do something else, it can take more than 1 hour to build up the environment)

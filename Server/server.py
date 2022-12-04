@@ -15,7 +15,7 @@ result = ""
 def recognition():
     if request.method == 'POST':
         img = request.files['img']
-        print("fname:" + secure_filename(img.filename))
+        print("fname:" + img.filename)
         img.save(secure_filename(img.filename))
         start_time = time.time()
         parser = argparse.ArgumentParser(description="655 Image Recognition Parser")

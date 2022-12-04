@@ -12,7 +12,7 @@ def index():
     if request.method == 'GET':
         return render_template('index.html')
     if request.method == 'POST':
-        result = request.result['result']
+        result = request.get_json()['result']
         result += "\nTotal time: {:.3f}s".format(time.time() - start)
         print("Total time: {:.3f}s".format(time.time() - start))
         return render_template('output.html', value = result)

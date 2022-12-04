@@ -1,15 +1,12 @@
-from flask import request, Flask, render_template
-import requests
-import time
-import os
 from PIL import Image
+from flask import request, Flask, render_template
+import time
 from werkzeug.utils import secure_filename
 from IRNode import IRNode
 import argparse
 
 app = Flask(__name__)
 result = ""
-
 
 @app.route('/predict', methods=['GET', 'POST'])
 def recognition():
@@ -24,14 +21,14 @@ def recognition():
         args = parser.parse_args()
         node = IRNode(args.modelType, args.modelsDir)
         try:
+            print(secure_filename(img.filename))
             result = node.predict(Image.open(secure_filename(img.filename)))
             result += "\nProcessing time: {:.3f}s".format(time.time() - start_time)
-            return render_template('result.html',value=result)
+            return render_template('result.html', value=result)
         except Exception as e:
             print(e.args)
             print(str(e))
             print(repr(e))
-            return render_template('result.html',value='Invalid File Type!!')
-        
+            return render_template('result.html', value='Invalid File Type!!')
 if __name__ == '__main__':
 	app.run(debug=True, host='0.0.0.0')

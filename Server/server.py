@@ -26,13 +26,13 @@ def recognition():
             print(secure_filename(img.filename))
             result = node.predict(Image.open(secure_filename(img.filename)))
             result += "Processing time: {:.3f}s".format(time.time() - start_time)
-	    req = requests.post(url, json={'result':result})
+            req = requests.post(url, json={'result':result})
             return req.text
         except Exception as e:
             print(e.args)
             print(str(e))
             print(repr(e))
-	    req = requests.post(url, json={'result':'Invalid File Type!!'})
+            req = requests.post(url, json={'result':'Invalid File Type!!'})
             return req.text
 
 if __name__ == '__main__':

@@ -25,7 +25,7 @@ def recognition():
         try:
             print(secure_filename(img.filename))
             result = node.predict(Image.open(secure_filename(img.filename)))
-            result += "Processing time: {:.3f}s".format(time.time() - start_time)
+            result += " Processing time: {:.3f}s".format(time.time() - start_time)
             return result
         except Exception as e:
             print(e.args)

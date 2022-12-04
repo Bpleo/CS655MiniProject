@@ -20,18 +20,18 @@ def recognition():
         parser.add_argument("--modelsDir", type=str, default="models", help="the folder that store the models")
         args = parser.parse_args()
         node = IRNode(args.modelType, args.modelsDir)
-	url = "http://140.254.14.103:5000/"
+        url = "http://140.254.14.103:5000/"
         try:
             print(secure_filename(img.filename))
             result = node.predict(Image.open(secure_filename(img.filename)))
             result += "Processing time: {:.3f}s".format(time.time() - start_time)
-	    req = requests.post(url, result={'result':result})
+            req = requests.post(url, result={'result':result})
             return req.text
         except Exception as e:
             print(e.args)
             print(str(e))
             print(repr(e))
-	    req = requests.post(url, result={'result':'Invalid File Type!!}
+            req = requests.post(url, result={'result':'Invalid File Type!!'})
             return req.text
 if __name__ == '__main__':
 	app.run(debug=True, host='0.0.0.0')

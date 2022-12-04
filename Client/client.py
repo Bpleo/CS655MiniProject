@@ -19,10 +19,13 @@ def upload():
         url = "http://140.254.14.107:5000/predict"
         image = {'img':open(secure_filename(img.filename),'rb')}
         start = time.time()
-        r = requests.post(url, files=image)
-        total_time = " Total time: {:.3f}s".format(time.time() - start)
-        print(total_time)
-        return render_template('output.html', value = r.text + total_time)
+        r1 = requests.post(url, files=image)
+        r2 = requests.post(url, files=image)
+        total_time1 = " Total time: {:.3f}s".format(time.time() - start)
+        total_time2 = " Total time: {:.3f}s".format(time.time() - start)
+        print(total_time1)
+        print(total_time2)
+        return render_template('output.html', value1 = r1.text + total_time1, value2 = r2.text + total_time2)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

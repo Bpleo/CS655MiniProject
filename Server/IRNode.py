@@ -23,8 +23,6 @@ def downloadModel(model_name, model_path):
 
 class IRNode:
     def __init__(self, model_name, dir):
-        self.model = models.vgg19(weights=models.VGG19_BN_Weights).eval()
-        return
         if model_name in modelPool:
             if not os.path.exists(dir):
                 os.mkdir(dir)

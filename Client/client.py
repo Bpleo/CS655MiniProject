@@ -20,8 +20,9 @@ def upload():
         image = {'img':open(secure_filename(img.filename),'rb')}
         start = time.time()
         r1 = requests.post(url, files=image)
-        r2 = requests.post(url, files=image)
         total_time1 = " Total time: {:.3f}s".format(time.time() - start)
+        start = time.time()
+        r2 = requests.post(url, files=image)
         total_time2 = " Total time: {:.3f}s".format(time.time() - start)
         print(total_time1)
         print(total_time2)

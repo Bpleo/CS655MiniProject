@@ -10,11 +10,6 @@ app = Flask(__name__)
 def index():
     if request.method == 'GET':
         return render_template('index.html')
-    if request.method == 'POST':
-        result = request.get_json()['result']
-        result += "Total time: {:.3f}s".format(time.time() - start)
-        print("Total time: {:.3f}s".format(time.time() - start))
-        return 
 
 @app.route('/upload',methods = ['GET', 'POST'])
 def upload():

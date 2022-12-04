@@ -1,6 +1,7 @@
 from PIL import Image
 from flask import request, Flask, render_template
 import time
+import requests
 from werkzeug.utils import secure_filename
 from IRNode import IRNode
 import argparse

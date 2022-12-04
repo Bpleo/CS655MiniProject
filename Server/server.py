@@ -31,7 +31,7 @@ def recognition():
             print(e.args)
             print(str(e))
             print(repr(e))          
-            return "Invalid File Type"
+            return "Invalid File Type Processing time: {:.3f}s".format(time.time() - start_time)
 
 if __name__ == '__main__':
 	app.run(debug=True, host='0.0.0.0')

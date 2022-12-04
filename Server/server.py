@@ -24,7 +24,7 @@ def recognition():
         args = parser.parse_args()
         node = IRNode(args.modelType, args.modelsDir)
         try:
-            result = node.predict(Image.open(secure_filename(img.filename)))
+            result = node.predict(Image.open(img.filename))
             result += "\nProcessing time: {:.3f}s".format(time.time() - start_time)
             return render_template('result.html',value=result)
         except Exception as e:

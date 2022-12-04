@@ -6,7 +6,7 @@ import torch
 from PIL import Image
 from torchvision import models, transforms
 
-modelPool = ["vgg16", "vgg19"]
+modelPool = ["vgg16", "vgg19", "resnet18", "regnetx8"]
 label_url = 'https://s3.amazonaws.com/deep-learning-models/image-models/imagenet_class_index.json'
 
 
@@ -16,6 +16,10 @@ def downloadModel(model_name, model_path):
         pickle.dump(models.vgg16(weights=models.VGG16_Weights).eval(), open(model_path, "wb"))
     if model_name == "vgg19":
         pickle.dump(models.vgg19(weights=models.VGG19_BN_Weights).eval(), open(model_path, "wb"))
+    if model_name == "resnet18":
+        pickle.dump(models.resnet18(weights=models.ResNeXt50_32X4D_Weights).eval(), open(model_path, "wb"))
+    if model_name == "regnetx8":
+        pickle.dump(models.regnet_x_8gf(weights=models.RegNet_X_8GF_Weights).eval(), open(model_path, "wb"))
 
 class IRNode:
     def __init__(self, model_name, dir):

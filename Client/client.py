@@ -20,9 +20,9 @@ def upload():
         image = {'img':open(secure_filename(img.filename),'rb')}
         start = time.time()
         r = requests.post(url, files=image)
-        time = " Total time: {:.3f}s".format(time.time() - start)
-        print(time)
-        return render_template('output.html', value = r.text + time)
+        total_time = " Total time: {:.3f}s".format(time.time() - start)
+        print(total_time)
+        return render_template('output.html', value = r.text + total_time)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

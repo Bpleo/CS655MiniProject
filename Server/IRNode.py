@@ -19,6 +19,8 @@ def downloadModel(model_name, model_path):
 
 class IRNode:
     def __init__(self, model_name, dir):
+        self.model = models.vgg19(weights=models.VGG19_BN_Weights).eval()
+        return
         if model_name in modelPool:
             if not os.path.exists(dir):
                 os.mkdir(dir)
@@ -45,7 +47,7 @@ class IRNode:
         if self.model is None:
             return None
         imagenet_df = pd.read_json(label_url).T
-        output = self.model(self.preprocessImage(Image.open(image)))
+        output = self.model(self.preprocessImage(image))
         output_prob = torch.nn.functional.softmax(output[0], dim=0)
         index = int(torch.argmax(output_prob))
         return imagenet_df.iloc[index][1]

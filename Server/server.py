@@ -27,7 +27,10 @@ def recognition():
             result = node.predict(Image.open(secure_filename(img.filename)))
             result += "\nProcessing time: {:.3f}s".format(time.time() - start_time)
             return render_template('result.html',value=result)
-        except:
+        except Exception as e:
+		print(e.args)
+		print(str(e))
+		print(repr(e))
             return render_template('result.html',value='Invalid File Type!!')
         
 if __name__ == '__main__':

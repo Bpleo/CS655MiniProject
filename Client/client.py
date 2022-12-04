@@ -35,7 +35,7 @@ def upload():
         
         print(total_time1)
         print(total_time2)
-        print(total_time3
+        print(total_time3)
         return render_template('output.html', value1 = r1.text + total_time1, value2 = r2.text + total_time2, value3 = r3.text + total_time3)
 
 if __name__ == '__main__':

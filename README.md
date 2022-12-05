@@ -78,3 +78,37 @@
    bash install.sh
    ```
     (We highly recommend leave it running and do something else, it can take more than 1 hour to build up the environment)
+
+
+First of all, ssh to each node and run:
+```
+wget https://raw.githubusercontent.com/Bpleo/CS655MiniProject/main/download.sh
+bash download.sh
+```
+
+3. **Web Interface**
+
+   + Step 1: At line 21-23 in ```client.py```, change these lines to:
+   ```
+   url1 = "http://PUBLIC IP OF CORRESPONDING SERVER NODE :5000/predict"
+   url2 = "http://PUBLIC IP OF CORRESPONDING SERVER NODE :5000/predict"
+   url3 = "http://PUBLIC IP OF CORRESPONDING SERVER NODE :5000/predict"
+   ```   
+   + Step 2: At line 11 in ```Client/templates/output.html```, change this line to:
+   ```
+   <form action="YOUR CLIENT NODE IP:5000/">
+   ```
+   + Step 3: At line 39
+   ```
+   <form action = "YOUR CLIENT NODE IP:5000/upload" method = "post" enctype = "multipart/form-data">
+   ```
+   + Step 4: Run:
+   ```
+   python3 client.py
+   ```
+4. **Backend server**
+
+   Run ```server.py``` and specify the classification model you want:
+   ```
+   python3 server.py --modelType MODEL_NAME
+   ```

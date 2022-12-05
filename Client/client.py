@@ -39,7 +39,7 @@ def upload():
                 
         str0="Pixel size:"+ Image.open(secure_filename(img.filename)).size)+"\n"+
               "Memory size:"+ os.path.getsize(secure_filename(img.filename)))+ "Bytes\n"
-        
+        print(str0)
         print(total_time1)
         print(total_time2)
         print(total_time3)

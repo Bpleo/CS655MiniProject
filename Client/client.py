@@ -19,18 +19,20 @@ def upload():
         url1 = "http://140.254.14.107:5000/predict"
         url2 = "http://140.254.14.110:5000/predict"
         url3 = "http://140.254.14.111:5000/predict"
-        image = {'img':open(secure_filename(img.filename),'rb')}
-        
+        image1 = {'img':open(secure_filename(img.filename),'rb')}
+        image2 = {'img':open(secure_filename(img.filename),'rb')}
+        image3 = {'img':open(secure_filename(img.filename),'rb')}
+
         start = time.time()
-        r1 = requests.post(url1, files=image)
+        r1 = requests.post(url1, files=image1)
         total_time1 = " VGG16 Total time: {:.3f}s".format(time.time() - start)
         
         start = time.time()
-        r2 = requests.post(url2, files=image)
+        r2 = requests.post(url2, files=image2)
         total_time2 = " RESNET18 Total time: {:.3f}s".format(time.time() - start)
         
         start = time.time()
-        r3 = requests.post(url3, files=image)
+        r3 = requests.post(url3, files=image3)
         total_time3 = " REGNETx8 Total time: {:.3f}s".format(time.time() - start)
         
         print(total_time1)

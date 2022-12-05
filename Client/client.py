@@ -3,6 +3,8 @@ import requests
 import time
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
+import os
+from PLW import Image
 
 app = Flask(__name__)
 
@@ -25,20 +27,23 @@ def upload():
 
         start = time.time()
         r1 = requests.post(url1, files=image1)
-        total_time1 = " VGG16 Total time: {:.3f}s".format(time.time() - start)
+        total_time1 = " Model:VGG16 \n Total time: {:.3f}s \n\n".format(time.time() - start)
         
         start = time.time()
         r2 = requests.post(url2, files=image2)
-        total_time2 = " RESNET18 Total time: {:.3f}s".format(time.time() - start)
+        total_time2 = " Model:RESNET18 \n Total time: {:.3f}s \n\n".format(time.time() - start)
         
         start = time.time()
         r3 = requests.post(url3, files=image3)
-        total_time3 = " REGNETx8 Total time: {:.3f}s".format(time.time() - start)
+        total_time3 = " Model:REGNETx8 \n Total time: {:.3f}s \n\n".format(time.time() - start)
+                
+        str0="Pixel size:"+ Image.open(secure_filename(img.filename)).size)+"\n"+
+              "Memory size:"+ os.path.getsize(secure_filename(img.filename)))+ "Bytes\n"
         
         print(total_time1)
         print(total_time2)
         print(total_time3)
-        return render_template('output.html', value1 = r1.text + total_time1, value2 = r2.text + total_time2, value3 = r3.text + total_time3)
+        return render_template('output.html',value0=str0, value1 = r1.text + total_time1, value2 = r2.text + total_time2, value3 = r3.text + total_time3)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

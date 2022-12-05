@@ -108,7 +108,7 @@ bash download.sh
    ```
 4. **Backend server**
 
-   + Step1: Run ```server.py``` and specify the classification model you want:
+   Run ```server.py``` and specify the classification model you want:
    ```
    python3 server.py --modelType MODEL_NAME
    ```

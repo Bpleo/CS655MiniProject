@@ -54,18 +54,27 @@
    by running conda init? [yes|no]
    [no] >>>
    ```
-   It is recommended that you type yes to use the conda command.
+   It is recommended that you type *yes* to use the conda command.
+   
+   After entering *yes*, please close the connection and start another ssh connection to the node. Then you can start setting up the environment.
    
 
 2. **Environment setup**
-   + Step 1: Download setup.sh and install.sh from our github
+   + Step 1: Download setup.sh from our github and run: 
+   
    ````
    wget https://raw.githubusercontent.com/Bpleo/CS655MiniProject/main/setup.sh
-   wget https://raw.githubusercontent.com/Bpleo/CS655MiniProject/main/install.sh
+   bash setup.sh
    ````
-   + Step 2: Run
-    ```
-    bash setup.sh
-    bash install.sh
-    ```
+   + Step 2: Activate your conda environment. (Here our environment name is *cs655*.)
+   
+   ```
+   conda activate cs655
+   ```
+   + Step 3: Download install.sh from our github and run:
+    
+   ```
+   wget https://raw.githubusercontent.com/Bpleo/CS655MiniProject/main/install.sh
+   bash install.sh
+   ```
     (We highly recommend leave it running and do something else, it can take more than 1 hour to build up the environment)

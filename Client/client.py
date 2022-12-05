@@ -4,7 +4,7 @@ import time
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 import os
-from PLW import Image
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -37,8 +37,7 @@ def upload():
         r3 = requests.post(url3, files=image3)
         total_time3 = " Model:REGNETx8 \n Total time: {:.3f}s \n\n".format(time.time() - start)
                 
-        str0="Pixel size:"+ Image.open(secure_filename(img.filename)).size)+"\n"+
-              "Memory size:"+ os.path.getsize(secure_filename(img.filename)))+ "Bytes\n"
+        str0="Pixel size:"+ Image.open(secure_filename(img.filename)).size+"\n"+"Memory size:"+ os.path.getsize(secure_filename(img.filename))+ "Bytes\n"
         print(str0)
         print(total_time1)
         print(total_time2)

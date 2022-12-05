@@ -1,7 +1,6 @@
 from PIL import Image
 from flask import request, Flask, render_template
 import time
-import requests
 from werkzeug.utils import secure_filename
 from IRNode import IRNode
 import argparse
@@ -21,7 +20,6 @@ def recognition():
         parser.add_argument("--modelsDir", type=str, default="models", help="the folder that store the models")
         args = parser.parse_args()
         node = IRNode(args.modelType, args.modelsDir)
-        url = "http://140.254.14.103:5000/"
         try:
             print(secure_filename(img.filename))
             result = node.predict(Image.open(secure_filename(img.filename)))

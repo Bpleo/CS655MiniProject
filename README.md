@@ -112,3 +112,7 @@ bash download.sh
    ```
    python3 server.py --modelType MODEL_NAME
    ```
+5. **Application**   
+   Please visit ```http:// Your web interface IP:5000```
+   
+   Our project link is : ```http:// 140.254.14.103:5000```
